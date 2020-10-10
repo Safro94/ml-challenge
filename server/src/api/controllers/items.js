@@ -6,6 +6,10 @@ const getItems = async (req, res) => {
   res.json(items);
 };
 
-const getItemById = () => {};
+const getItemById = async (req, res) => {
+  const { id } = req.params;
+  const item = await ItemsService.getById(id);
+  res.json(item);
+};
 
 module.exports = { getItems, getItemById };

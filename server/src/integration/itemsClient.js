@@ -8,6 +8,22 @@ const getItems = async query => {
   return data;
 };
 
+const getItemById = async id => {
+  const endpoint = `${process.env.MELI_API_URL}/items/${id}`;
+
+  const getItem = () => fetch({ url: endpoint });
+
+  const getItemDescription = () => fetch({ url: `${endpoint}/description` });
+
+  const [item, description] = await Promise.all([
+    getItem(),
+    getItemDescription(),
+  ]);
+
+  return { ...item, ...description };
+};
+
 module.exports = {
   getItems,
+  getItemById,
 };
