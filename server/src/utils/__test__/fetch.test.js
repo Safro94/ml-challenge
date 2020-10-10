@@ -34,11 +34,7 @@ describe('Fetch', () => {
         //Arrange
         nodeFetch.mockImplementation(() => {
             return {
-                json: () => {
-                    return {
-                        test
-                    }
-                }
+                json: () => ({ test })
             }
         });
 
@@ -58,5 +54,20 @@ describe('Fetch', () => {
 
         //Assert
         expect(result).not.toBeDefined();
+    });
+
+    it('should return an empty object', async() => {
+        //Arrange
+        nodeFetch.mockImplementation(() => {
+            return {
+                json: () => null
+            }
+        });
+
+        //Act
+        const result = await fetch(params);
+
+        //Assert
+        expect(result).toEqual({});
     });
 });
