@@ -12,5 +12,6 @@ module.exports = {
 		'linebreak-style': 0,
 		'arrow-parens': ['error', 'as-needed'],
 		'consistent-return': 0,
+		'implicit-arrow-linebreak': 0,
 	},
 };
