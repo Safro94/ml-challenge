@@ -13,8 +13,8 @@ const mapItem = result => {
     title: result.title,
     price: {
       currency: result.currency_id,
-      amount: parseInt(amount || 0, 10),
-      decimals: parseInt(decimals || 0, 10),
+      amount: parseInt(amount, 10),
+      decimals: parseInt(decimals, 10),
     },
     picture: result.thumbnail,
     condition: result.condition,
