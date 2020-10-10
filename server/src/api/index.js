@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const items = require('./routes/items');
 const errorHandler = require('../middlewares/errorHandler');
+const notFound = require('../middlewares/notFound');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,6 +17,9 @@ app.use(express.json());
 
 // Routes
 app.use('/api/items', items);
+
+// Not found
+app.use(notFound);
 
 // Error handler
 app.use(errorHandler);
