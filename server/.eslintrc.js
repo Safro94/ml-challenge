@@ -14,5 +14,6 @@ module.exports = {
     'consistent-return': 0,
     'implicit-arrow-linebreak': 0,
     indent: ['error', 2],
+    'class-methods-use-this': 0,
   },
 };
