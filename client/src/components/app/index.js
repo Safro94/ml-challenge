@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Routes from 'routes';
+
 import useStyles from 'isomorphic-style-loader/useStyles';
 import styles from './index.module.scss';
 
@@ -8,7 +10,7 @@ export default () => {
 
 	return (
 		<div>
-			<div className={styles.hello}>Welcome to Razzle.</div>
+			<Routes />
 		</div>
 	);
 };
