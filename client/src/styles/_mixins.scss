@@ -1,0 +1,58 @@
+@import 'breakpoints.scss';
+@import 'colors.scss';
+
+@mixin mq-sm {
+	@media (min-width: map-get($breakpoints, 'sm')) {
+		@content;
+	}
+}
+
+@mixin mq-md {
+	@media (min-width: map-get($breakpoints, 'md')) {
+		@content;
+	}
+}
+
+@mixin mq-lg {
+	@media (min-width: map-get($breakpoints, 'lg')) {
+		@content;
+	}
+}
+
+@mixin flex($align: null, $justify: null, $direction: null) {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: $align;
+	justify-content: $justify;
+	flex-direction: $direction;
+}
+
+@mixin scrollbar($display: none) {
+	&::-webkit-scrollbar {
+		width: 5px;
+		height: 5px;
+		display: $display;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $secondary-color;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #000;
+		border-radius: 25px;
+	}
+}
+
+@mixin image($height: null, $width: null, $radius: 0) {
+	height: $height;
+	width: $width;
+	border-radius: $radius;
+	object-fit: contain;
+}
+
+@mixin hover($background, $color, $border: null) {
+	background: $background;
+	color: $color;
+	border-color: $border;
+}

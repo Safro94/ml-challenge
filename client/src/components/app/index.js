@@ -4,9 +4,10 @@ import Routes from 'routes';
 
 import useStyles from 'isomorphic-style-loader/useStyles';
 import styles from './index.module.scss';
+import global from '../../index.scss';
 
 export default () => {
-	useStyles(styles);
+	useStyles(styles, global);
 
 	return (
 		<div>
