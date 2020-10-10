@@ -9,16 +9,22 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
+    "@loadable/component": "^5.13.2",
+    "@loadable/server": "^5.13.2",
     "axios": "^0.20.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "express-static-gzip": "^2.0.8",
+    "history": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@loadable/babel-plugin": "^5.13.2",
+    "@loadable/webpack-plugin": "^5.13.0",
     "autoprefixer": "^9.0.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "compression-webpack-plugin": "^6.0.3",
     "isomorphic-style-loader": "^5.1.0",
     "node-sass": "^4.14.1",

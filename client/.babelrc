@@ -1,0 +1,12 @@
+{
+  "presets": [ "@babel/preset-react", "@babel/preset-env", "razzle/babel" ],
+  "plugins": [
+	  ["module-resolver", {
+	    "root": ["./src"],
+	    "alias": {
+        "components": "./src/components",
+	    }
+    }],
+    ["@loadable/babel-plugin"]
+  ]
+}
