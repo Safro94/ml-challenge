@@ -1,0 +1,12 @@
+@import '../../../styles/main.scss';
+
+.button {
+	font-size: 1rem;
+	font-weight: bold;
+	border: 1px solid transparent;
+	transition: all 0.2s ease-in;
+
+	&:disabled {
+		opacity: 0.8;
+	}
+}

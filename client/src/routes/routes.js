@@ -1,5 +1,9 @@
 import loadable from '@loadable/component';
 
+export const HOME = '/';
+export const RESULTS = '/items';
+export const DETAIL = '/items/:id';
+
 const Home = loadable(() =>
 	import(
 		/* webpackChunkName: 'Home'  */
@@ -23,17 +27,17 @@ const Detail = loadable(() =>
 
 export default [
 	{
-		path: '/items',
+		path: RESULTS,
 		component: Results,
 		exact: true,
 	},
 	{
-		path: '/items/:id',
+		path: DETAIL,
 		component: Detail,
 		exact: true,
 	},
 	{
-		path: '/',
+		path: HOME,
 		component: Home,
 	},
 ];

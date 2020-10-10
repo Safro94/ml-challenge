@@ -1,0 +1,26 @@
+@import '../../styles/main.scss';
+
+.root {
+	display: flex;
+	background-color: $primary-color;
+	height: 60px;
+	max-height: 60px;
+
+	.container {
+		@include display($type: grid, $align: center);
+		grid-template-columns: 70px 1fr;
+		gap: 10px;
+		width: 100%;
+
+		.logo {
+			@include image($height: 40px);
+		}
+	}
+}
+
+@include mq-lg {
+	.container {
+		max-width: map-get($breakpoints, 'lg');
+		margin: auto;
+	}
+}

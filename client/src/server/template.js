@@ -10,7 +10,8 @@ export default ({ markup, js, styles }) => `
       <style>${[...styles].join('')}</style>
   </head>
   <body>
-      <div id="root">${markup}</div>    
+    <div id="root">${markup}</div>
+    ${js.getScriptTags()}
   </body>
 </html>
 `;

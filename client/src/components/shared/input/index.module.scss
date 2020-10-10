@@ -1,0 +1,13 @@
+@import '../../../styles/main.scss';
+
+.input {
+	background-color: $white;
+	border: 0;
+	color: $medium-grey;
+	padding: 10px;
+	font-size: $fs-18;
+
+	&::placeholder {
+		opacity: 0.5;
+	}
+}

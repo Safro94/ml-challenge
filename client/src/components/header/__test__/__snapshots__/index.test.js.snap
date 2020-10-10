@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render OK 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <div
+      class="container"
+    >
+      <div>
+        <a
+          data-testid="logo"
+          to="/"
+        >
+          <img
+            alt="Logo"
+            class="logo"
+            src="/assets/Logo_ML@2x.png.png.png"
+          />
+        </a>
+      </div>
+      <div>
+        <form
+          class="form"
+        >
+          <input
+            class="input"
+            placeholder="Nunca dejes de buscar"
+            type="text"
+            value=""
+          />
+          <button
+            class="button button"
+            disabled=""
+            type="submit"
+          >
+            <img
+              alt="Buscar"
+              src="/assets/ic_Search.png"
+            />
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "razzle start",
     "build": "razzle build",
-    "test": "razzle test --env=jsdom",
+    "test": "jest --watchAll",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
@@ -15,7 +15,8 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "express-static-gzip": "^2.0.8",
-    "history": "^5.0.0",
+    "https": "^1.0.0",
+    "identity-obj-proxy": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0"
@@ -23,14 +24,21 @@
   "devDependencies": {
     "@loadable/babel-plugin": "^5.13.2",
     "@loadable/webpack-plugin": "^5.13.0",
+    "@testing-library/dom": "^7.24.5",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@testing-library/react-hooks": "^3.4.2",
+    "@testing-library/user-event": "^12.1.7",
     "autoprefixer": "^9.0.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "compression-webpack-plugin": "^6.0.3",
+    "history": "^5.0.0",
     "isomorphic-style-loader": "^5.1.0",
+    "jest": "^26.5.2",
     "node-sass": "^4.14.1",
     "optimize-js-plugin": "0.0.4",
     "razzle": "^3.0.0",
-    "resolve-url-loader": "^3.1.1",
+    "react-test-renderer": "^16.13.1",
     "sass-loader": "^10.0.3"
   }
 }

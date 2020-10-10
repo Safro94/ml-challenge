@@ -1,0 +1,11 @@
+@import '../../styles/main.scss';
+
+.form {
+	@include display($type: grid);
+	grid-template-columns: 1fr 40px;
+}
+
+.button {
+	width: 40px;
+	background-color: $secondary-color;
+}

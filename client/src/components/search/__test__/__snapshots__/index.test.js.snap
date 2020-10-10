@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should render OK 1`] = `
+<div>
+  <div>
+    <form
+      class="form"
+    >
+      <input
+        class="input"
+        placeholder="Nunca dejes de buscar"
+        type="text"
+        value=""
+      />
+      <button
+        class="button button"
+        disabled=""
+        type="submit"
+      >
+        <img
+          alt="Buscar"
+          src="/assets/ic_Search.png"
+        />
+      </button>
+    </form>
+  </div>
+</div>
+`;

@@ -38,24 +38,10 @@ module.exports = {
 			},
 		};
 
-		const resolverLoader = {
-			loader: 'resolve-url-loader',
-			options: {
-				attempts: 1,
-				sourceMap: true,
-			},
-		};
-
 		appConfig.module.rules.push({
 			test: /\.(sass|scss)$/,
 			exclude: [path.resolve(__dirname, './node_modules')],
-			use: [
-				'isomorphic-style-loader',
-				cssLoader,
-				resolverLoader,
-				postCssLoader,
-				scssLoader,
-			],
+			use: ['isomorphic-style-loader', cssLoader, postCssLoader, scssLoader],
 		});
 
 		appConfig.plugins.push(
