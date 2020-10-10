@@ -10,6 +10,8 @@ import StyleContext from 'isomorphic-style-loader/StyleContext';
 
 import App from 'components/app';
 
+import template from '../template';
+
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
@@ -40,21 +42,11 @@ server
 		);
 
 		res.send(
-			`<!doctype html>
-    <html lang="es">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta charSet='utf-8' />
-        <title>Meli challenge</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        ${extractor.getLinkTags()}
-        <style>${[...css].join('')}</style>
-    </head>
-    <body>
-        <div id="root">${markup}</div>    
-        <script src="${assets.client.js}" defer crossorigin></script>
-    </body>
-</html>`
+			template({
+				markup,
+				js: extractor,
+				styles: css,
+			})
 		);
 	});
 
