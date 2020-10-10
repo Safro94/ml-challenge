@@ -3,7 +3,7 @@ import expressStaticGzip from 'express-static-gzip';
 import compression from 'compression';
 import path from 'path';
 
-import app from './server/routes';
+import app from 'server/routes';
 
 if (module.hot) {
 	module.hot.accept('./server/routes', function () {
