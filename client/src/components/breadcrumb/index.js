@@ -25,7 +25,7 @@ export default ({ path = HOME, category, isLast }) => {
 			>
 				{category}
 			</Link>
-			{!isLast && <span> {'>'} </span>}
+			{!isLast && <span className={classes.separator}> {'>'} </span>}
 		</li>
 	);
 };

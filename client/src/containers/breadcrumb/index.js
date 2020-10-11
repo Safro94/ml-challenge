@@ -12,14 +12,16 @@ export default () => {
 	const { categories } = useApplication();
 
 	return (
-		<ul className={classes.container}>
-			{categories?.map((category, index) => (
-				<Breadcrumb
-					key={category}
-					category={category}
-					isLast={index === categories.length - 1}
-				/>
-			))}
-		</ul>
+		<div className={classes.container}>
+			<ul>
+				{categories?.map((category, index) => (
+					<Breadcrumb
+						key={category}
+						category={category}
+						isLast={index === categories.length - 1}
+					/>
+				))}
+			</ul>
+		</div>
 	);
 };

@@ -1,9 +1,9 @@
 @import '../../styles/main.scss';
 
 .breadcrumb {
+	display: inline-flex;
 	font-size: $fs-14;
 	color: $light-grey;
-	margin-right: 5px;
 
 	.link {
 		color: $light-grey;
@@ -16,5 +16,9 @@
 
 	.last {
 		font-weight: bold;
+	}
+
+	.separator {
+		margin: 0 5px;
 	}
 }

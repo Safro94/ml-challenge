@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item should render with free shipping 1`] = `
+<div>
+  <div
+    class="container"
+    data-testid="item"
+  >
+    <div>
+      <img
+        alt="title"
+        class="itemImage"
+        src="a.jpg"
+      />
+    </div>
+    <div
+      class="information"
+    >
+      <div>
+        <h2
+          class="price"
+        >
+          <span
+            class="currencyCode"
+          >
+            $
+          </span>
+          300,50
+          <img
+            alt="Free shipping"
+            class="shippingImage"
+            src="/assets/ic_shipping@2x.png.png.png"
+          />
+        </h2>
+        <h3>
+          title
+        </h3>
+        <h3>
+          new
+        </h3>
+      </div>
+      <div>
+        <span
+          class="address"
+        >
+          address
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Item should render without free shipping 1`] = `
+<div>
+  <div
+    class="container"
+    data-testid="item"
+  >
+    <div>
+      <img
+        alt="title"
+        class="itemImage"
+        src="a.jpg"
+      />
+    </div>
+    <div
+      class="information"
+    >
+      <div>
+        <h2
+          class="price"
+        >
+          <span
+            class="currencyCode"
+          >
+            $
+          </span>
+          300,50
+        </h2>
+        <h3>
+          title
+        </h3>
+        <h3>
+          new
+        </h3>
+      </div>
+      <div>
+        <span
+          class="address"
+        >
+          address
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

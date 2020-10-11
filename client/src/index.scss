@@ -34,15 +34,18 @@ button {
 }
 
 h1 {
-	font-size: $fs-46;
+	font-size: $fs-30;
+	font-weight: normal;
 }
 
 h2 {
-	font-size: $fs-24;
+	font-size: $fs-20;
+	font-weight: normal;
 }
 
 h3 {
-	font-size: $fs-18;
+	font-size: $fs-16;
+	font-weight: normal;
 }
 
 h4 {
@@ -50,11 +53,25 @@ h4 {
 }
 
 p {
-	font-size: $fs-16;
+	font-size: $fs-12;
 }
 
 #root {
 	@include display(center, center);
 	height: 100%;
 	width: 100%;
+}
+
+@include mq-sm {
+	h1 {
+		font-size: $fs-46;
+	}
+
+	h2 {
+		font-size: $fs-24;
+	}
+
+	h3 {
+		font-size: $fs-18;
+	}
 }

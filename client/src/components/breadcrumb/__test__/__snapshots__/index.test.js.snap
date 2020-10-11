@@ -12,7 +12,9 @@ exports[`Breadcrumb should render OK when isLast is false 1`] = `
     >
       category
     </a>
-    <span>
+    <span
+      class="separator"
+    >
        
       &gt;
        

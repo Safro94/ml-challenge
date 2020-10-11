@@ -1,6 +1,11 @@
 @import '../../styles/main.scss';
 
 .container {
-	display: flex;
-	margin: $margin-default 0;
+	margin: $space-default 10px;
+}
+
+@include mq-lg {
+	.container {
+		margin: $space-default 0;
+	}
 }

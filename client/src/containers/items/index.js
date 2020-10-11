@@ -36,11 +36,11 @@ export default () => {
 			}, handleError);
 		};
 
-		if (!items && term) {
+		if (term) {
 			setLoading(true);
 			getItems();
 		}
-	}, [term, items, setResult]);
+	}, [term, setResult]);
 
 	const handleClick = id => {
 		history.push(DETAIL.replace(':id', id));
@@ -55,7 +55,9 @@ export default () => {
 					<Item key={item.id} item={item} onClick={handleClick} />
 				))
 			) : (
-				<h1>No se han encontrado resultados para tu busqueda</h1>
+				<h1 className={classes.error}>
+					No se han encontrado resultados para tu busqueda
+				</h1>
 			)}
 		</div>
 	);
