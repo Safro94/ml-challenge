@@ -6,6 +6,7 @@ export default ({ markup, js, styles }) => `
       <meta charSet='utf-8' />
       <title>Meli challenge</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="This is a coding challenge">
       ${js.getLinkTags()}
       <style>${[...styles].join('')}</style>
   </head>

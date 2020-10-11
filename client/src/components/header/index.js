@@ -13,20 +13,22 @@ export default () => {
 	useStyles(classes);
 
 	return (
-		<div className={classes.root}>
-			<div className={classes.container}>
-				<div>
-					<Link data-testid='logo' to={HOME}>
-						<img
-							className={classes.logo}
-							src='/assets/Logo_ML@2x.png.png.png'
-							alt='Logo'
-						/>
-					</Link>
-				</div>
+		<header>
+			<div className={classes.root}>
+				<div className={classes.container}>
+					<div>
+						<Link data-testid='logo' to={HOME}>
+							<img
+								className={classes.logo}
+								src='/assets/Logo_ML@2x.png.png.png'
+								alt='Logo'
+							/>
+						</Link>
+					</div>
 
-				<SearchContainer />
+					<SearchContainer />
+				</div>
 			</div>
-		</div>
+		</header>
 	);
 };

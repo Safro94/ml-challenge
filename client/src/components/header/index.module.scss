@@ -5,6 +5,7 @@
 	background-color: $primary-color;
 	height: 60px;
 	max-height: 60px;
+	padding: 10px;
 
 	.container {
 		@include display($type: grid, $align: center);
@@ -15,6 +16,12 @@
 		.logo {
 			@include image($height: 40px);
 		}
+	}
+}
+
+@include mq-sm {
+	.root {
+		padding: 0;
 	}
 }
 

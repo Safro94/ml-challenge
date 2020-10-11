@@ -32,9 +32,14 @@ export default ({ onSubmit }) => {
 					placeholder='Nunca dejes de buscar'
 					value={searchTerm}
 					onChange={({ target }) => setSearchTerm(target.value)}
+					title='Escribi tu texto de busqueda aqui'
 				/>
 				<Button disabled={isInvalid} customClasses={classes.button}>
-					<img src='/assets/ic_Search.png' alt='Buscar' />
+					<img
+						className={classes.icon}
+						src='/assets/ic_Search@2x.png.png.png'
+						alt='Buscar'
+					/>
 				</Button>
 			</Form>
 		</div>
