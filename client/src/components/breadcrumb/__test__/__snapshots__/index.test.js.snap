@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb should render OK when isLast is false 1`] = `
+<div>
+  <li
+    class="breadcrumb"
+  >
+    <a
+      class="link"
+      data-testid="link"
+      to="/"
+    >
+      category
+    </a>
+    <span>
+       
+      &gt;
+       
+    </span>
+  </li>
+</div>
+`;
+
+exports[`Breadcrumb should render OK when isLast is true 1`] = `
+<div>
+  <li
+    class="breadcrumb"
+  >
+    <a
+      class="link last"
+      data-testid="link"
+      to="/"
+    >
+      category
+    </a>
+  </li>
+</div>
+`;

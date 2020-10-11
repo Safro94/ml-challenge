@@ -1,0 +1,20 @@
+@import '../../styles/main.scss';
+
+.breadcrumb {
+	font-size: $fs-14;
+	color: $light-grey;
+	margin-right: 5px;
+
+	.link {
+		color: $light-grey;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: $medium-grey;
+		}
+	}
+
+	.last {
+		font-weight: bold;
+	}
+}
