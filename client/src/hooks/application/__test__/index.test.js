@@ -21,7 +21,7 @@ describe('Application hook', () => {
 		expect(result.current.term).toEqual(term);
 	});
 
-	it('it should return the items when setItems is called', async () => {
+	it('it should return the items and categories when setResult is called', async () => {
 		// Arrange
 		const items = [
 			{
@@ -34,6 +34,8 @@ describe('Application hook', () => {
 			},
 		];
 
+		const categories = ['cat1', 'cat2', 'cat3'];
+
 		// Act
 		const { result } = renderHook(() => useApplication(), {
 			wrapper: ({ children }) => (
@@ -41,9 +43,10 @@ describe('Application hook', () => {
 			),
 		});
 
-		act(() => result.current.setItems(items));
+		act(() => result.current.setResult({ items, categories }));
 
 		// Assert
 		expect(result.current.items).toEqual(items);
+		expect(result.current.categories).toEqual(categories);
 	});
 });

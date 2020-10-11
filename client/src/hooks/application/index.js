@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 
 const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
-const SET_ITEMS = 'SET_ITEMS';
+const SET_RESULT = 'SET_RESULT';
 
 const ApplicationContext = createContext();
 
@@ -18,12 +18,12 @@ const useApplication = () => {
 		[setApplication]
 	);
 
-	const setItems = useCallback(
-		items => setApplication({ type: SET_ITEMS, value: items }),
+	const setResult = useCallback(
+		result => setApplication({ type: SET_RESULT, value: result }),
 		[setApplication]
 	);
 
-	return { ...application, setSearchTerm, setItems };
+	return { ...application, setSearchTerm, setResult };
 };
 
 const ApplicationProvider = ({ application = {}, children }) => {
@@ -31,8 +31,12 @@ const ApplicationProvider = ({ application = {}, children }) => {
 		switch (action.type) {
 			case SET_SEARCH_TERM:
 				return { ...state, term: action.value };
-			case SET_ITEMS:
-				return { ...state, items: action.value };
+			case SET_RESULT:
+				return {
+					...state,
+					items: action.value.items,
+					categories: action.value.categories,
+				};
 			default:
 				return state;
 		}
