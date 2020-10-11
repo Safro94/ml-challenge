@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/api/index.js",
-    "dev": "nodemon src/api/index.js",
+    "server": "nodemon src/api/index.js",
+    "client": "cd .. && npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "cross-env NODE_ENV=test jest --env=node --watchAll",
     "coverage": "cross-env NODE_ENV=test jest --coverage"
   },
@@ -14,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.4",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
