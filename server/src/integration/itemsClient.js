@@ -24,7 +24,16 @@ const getItemById = async id => {
   return { ...item, ...description };
 };
 
+const getCategoryById = async id => {
+  const data = await fetch({
+    url: `${process.env.MELI_API_URL}/categories/${id}`,
+  });
+
+  return data;
+}
+
 module.exports = {
   getItems,
   getItemById,
+  getCategoryById
 };

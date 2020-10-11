@@ -1,9 +1,10 @@
 const ItemsService = require('../itemsService');
 const { mapResults, mapItemDetail } = require('../../utils/mapper');
-const { getItems, getItemById } = require('../../integration/itemsClient');
+const { getItems, getItemById, getCategoryById } = require('../../integration/itemsClient');
 
 const mockItems = { items: 'items' };
-const mockItemDetail = { item: 'item' };
+const mockItemDetail = { category_id:1 };
+const mockCategories = [{ category: 'category' }];
 jest.mock('../../utils/mapper', () => {
   return {
     mapResults: jest.fn(() => mockItems),
@@ -14,7 +15,8 @@ jest.mock('../../utils/mapper', () => {
 jest.mock('../../integration/itemsClient', () => {
   return {
     getItems: jest.fn(() => mockItems),
-    getItemById: jest.fn(() => mockItemDetail)
+    getItemById: jest.fn(() => mockItemDetail),
+    getCategoryById: jest.fn(() => mockCategories)
   }
 });
 
@@ -45,13 +47,16 @@ describe('Get items', () => {
 describe('Get Items By Id', () => {
   const id = '123';
 
-  it('should call getById', async () => {
+  it('should call getById and getCategoryById', async () => {
     //Act
     await ItemsService.getById(id);
 
     //Assert
     expect(getItemById).toHaveBeenCalledTimes(1);
     expect(getItemById).toHaveBeenCalledWith(id);
+
+    expect(getCategoryById).toHaveBeenCalledTimes(1);
+    expect(getCategoryById).toHaveBeenCalledWith(mockItemDetail.category_id);
   });
 
   it('should mapItemDetail and return the response', async () => {
@@ -60,7 +65,7 @@ describe('Get Items By Id', () => {
 
     //Assert
     expect(mapItemDetail).toHaveBeenCalledTimes(1);
-    expect(mapItemDetail).toHaveBeenCalledWith(mockItemDetail);
+    expect(mapItemDetail).toHaveBeenCalledWith(mockItemDetail, mockCategories);
     expect(result).toEqual(mockItemDetail);
   });
 }); 

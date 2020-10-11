@@ -6,9 +6,10 @@ describe('Mappers', () => {
     const pictures = [{ url: 'pic.jpg' }, { url: 'pic2.jpg' }]
     const item = getItem(pictures);
     const expectedResult = getMapItemDetailExpectedResult(pictures[0].url);
+    const categories = getFilters()[0].values[0];
 
     //Act
-    const result = mapItemDetail(item);
+    const result = mapItemDetail(item, categories);
 
     //Assert
     expect(expectedResult).toEqual(result);
@@ -72,7 +73,8 @@ const getItem = (pictures = []) => ({
     state: {
       name: 'capital federal'
     }
-  }
+  },
+  category_id: 'category'
 });
 
 const getExpectedItem = (picture) => ({
@@ -86,7 +88,8 @@ const getExpectedItem = (picture) => ({
   picture: picture || 'a.jpg',
   condition: 'new',
   free_shipping: true,
-  address: 'capital federal'
+  address: 'capital federal',
+  category_id: 'category'
 });
 
 const getMapItemDetailExpectedResult = (picture) => ({
@@ -94,6 +97,7 @@ const getMapItemDetailExpectedResult = (picture) => ({
     name: 'Matias',
     lastname: 'Safranchik',
   },
+  categories: ['category 1', 'category 2'],
   item: {
     ...getExpectedItem(picture),
     sold_quantity: 50,

@@ -1,5 +1,5 @@
 const fetch = require('../../utils/fetch');
-const { getItems, getItemById } = require('../itemsClient');
+const { getItems, getItemById, getCategoryById } = require('../itemsClient');
 
 jest.mock('../../utils/fetch', () => {
   return jest.fn()
@@ -7,12 +7,13 @@ jest.mock('../../utils/fetch', () => {
 
 describe('Get Items', () => {
   const query = 'test';
+  const results = [
+    { id: 10, title: 'item1' },
+    { id: 1, title: 'item2' },
+  ];
 
   beforeEach(() => {
-    fetch.mockImplementation(() => ([
-      { id: 10, title: 'item1' },
-      { id: 1, title: 'item2' },
-    ]))
+    fetch.mockImplementation(() => results)
   });
 
   it('should call fetch only with q if there is no limit', async () => {
@@ -37,17 +38,11 @@ describe('Get Items', () => {
   });
 
   it('should return an array of items', async () => {
-      //Arrange
-      const expectedResult = [
-        { id: 10, title: 'item1' },
-        { id: 1, title: 'item2' },
-      ];
-
       //Act
       const result = await getItems(query);
 
       //Assert
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(results);
   });
 });
 
@@ -85,3 +80,32 @@ describe('Get Items By Id', () => {
       expect(result).toEqual(expectedResult);
   });
 }); 
+
+describe('Get Category By Id', () => {
+  const id = 'MLA1055';
+  const categories = [
+    { name: 'category1' },
+    { name: 'category2' },
+  ]
+
+  beforeEach(() => {
+    fetch.mockImplementation(() => categories)
+  });
+
+  it('should call fetch', async () => {
+    //Act
+    await getCategoryById(id);
+
+    //Assert
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith({ url: `${process.env.MELI_API_URL}/categories/${id}` });
+  });
+
+  it('should return an array of categories', async () => {
+    //Act
+    const result = await getCategoryById(id);
+
+    //Assert
+    expect(result).toEqual(categories);
+  });
+});

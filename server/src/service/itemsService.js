@@ -1,4 +1,4 @@
-const { getItems, getItemById } = require('../integration/itemsClient');
+const { getItems, getItemById, getCategoryById } = require('../integration/itemsClient');
 const { mapResults, mapItemDetail } = require('../utils/mapper');
 
 class ItemsService {
@@ -9,7 +9,8 @@ class ItemsService {
 
   async getById(id) {
     const item = await getItemById(id);
-    return mapItemDetail(item);
+    const categories = await getCategoryById(item.category_id);
+    return mapItemDetail(item, categories);
   }
 }
 
