@@ -9,6 +9,7 @@ exports[`Search should render OK 1`] = `
       <input
         class="input"
         placeholder="Nunca dejes de buscar"
+        title="Escribi tu texto de busqueda aqui"
         type="text"
         value=""
       />
@@ -19,7 +20,8 @@ exports[`Search should render OK 1`] = `
       >
         <img
           alt="Buscar"
-          src="/assets/ic_Search.png"
+          class="icon"
+          src="/assets/ic_Search@2x.png.png.png"
         />
       </button>
     </form>

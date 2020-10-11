@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error should render OK 1`] = `
+<div>
+  <div
+    class="container"
+    role="alert"
+  >
+    <img
+      alt="Error"
+      class="image"
+      src="/assets/error.png"
+    />
+    <h2>
+      Ooops, ha habido un error, por favor volvé a intentarlo mas tarde
+    </h2>
+  </div>
+</div>
+`;

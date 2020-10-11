@@ -1,8 +1,10 @@
 import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import Routes from 'routes';
 
 import Header from 'components/header';
+import Error from 'components/shared/error';
 
 import { ApplicationProvider } from 'hooks/application';
 
@@ -18,9 +20,13 @@ export default () => {
 			<div>
 				<Header />
 
-				<div>
-					<Routes />
-				</div>
+				<main>
+					<div className={classes.routes}>
+						<ErrorBoundary FallbackComponent={Error}>
+							<Routes />
+						</ErrorBoundary>
+					</div>
+				</main>
 			</div>
 		</ApplicationProvider>
 	);

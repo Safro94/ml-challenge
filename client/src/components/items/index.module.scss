@@ -1,0 +1,6 @@
+@import '../../styles/main.scss';
+
+.container {
+	@include display($align: center, $justify: center, $direction: column);
+	height: 100%;
+}

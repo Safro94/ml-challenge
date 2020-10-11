@@ -46,7 +46,9 @@ module.exports = {
 
 		appConfig.plugins.push(
 			new webpack.DefinePlugin({
-				'process.env.SERVER_API_URL': JSON.stringify(process.env.PUBLIC_PATH),
+				'process.env.SERVER_API_URL': JSON.stringify(
+					process.env.SERVER_API_URL
+				),
 			})
 		);
 

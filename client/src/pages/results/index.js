@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Items from 'components/items';
+
 export default () => {
-	return <div>Results</div>;
+	return <Items />;
 };

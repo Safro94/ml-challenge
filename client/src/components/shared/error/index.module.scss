@@ -1,0 +1,11 @@
+@import '../../../styles/main.scss';
+
+.container {
+	@include display($align: center, $justify: center, $direction: column);
+	width: 80%;
+	margin: auto;
+
+	.image {
+		@include image(150px, 150px);
+	}
+}

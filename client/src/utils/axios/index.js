@@ -3,7 +3,7 @@ import https from 'https';
 
 const opts = {
 	httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-	baseURL: `${process.env.SERVER_API_URL}`,
+	baseURL: `${process.env.SERVER_API_URL}/api`,
 };
 
 const interceptorError = error => Promise.reject(error.response);
