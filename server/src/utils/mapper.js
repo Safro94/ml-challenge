@@ -5,6 +5,11 @@ const mapCategories = filters => {
   return categories.values[0].path_from_root.map(category => category.name);
 };
 
+/*  
+  Tuve que agregar el address para la localidad que muestra cada producto
+  a la derecha en la lista de productos, a pesar de que el ejercicio no decia
+  que habia que devolver una propiedad address en el enunciado
+*/
 const mapItem = result => {
   const [amount, decimals] = result.price.toString().split('.');
 
@@ -19,6 +24,7 @@ const mapItem = result => {
     picture: result.pictures && result.pictures.length ? result.pictures[0].url : result.thumbnail,
     condition: result.condition,
     free_shipping: result.shipping.free_shipping,
+    address: result.seller_address.state.name
   };
 };
 

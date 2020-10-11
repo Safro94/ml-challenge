@@ -67,7 +67,12 @@ const getItem = (pictures = []) => ({
     free_shipping: true,
   },
   sold_quantity: 50,
-  plain_text: 'description'
+  plain_text: 'description',
+  seller_address: {
+    state: {
+      name: 'capital federal'
+    }
+  }
 });
 
 const getExpectedItem = (picture) => ({
@@ -81,6 +86,7 @@ const getExpectedItem = (picture) => ({
   picture: picture || 'a.jpg',
   condition: 'new',
   free_shipping: true,
+  address: 'capital federal'
 });
 
 const getMapItemDetailExpectedResult = (picture) => ({
