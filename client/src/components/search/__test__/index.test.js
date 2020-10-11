@@ -6,13 +6,34 @@ import userEvent from '@testing-library/user-event';
 
 import Search from '../';
 
+import { useApplication } from 'hooks/application';
+
+jest.mock('hooks/application', () => ({
+	useApplication: jest.fn(),
+}));
+
 describe('Search', () => {
-	it('should render OK', () => {
+	it('should have the term in the input', () => {
+		//Arrange
+		const term = 'test term';
+		useApplication.mockImplementation(() => ({ term }));
+
 		//Act
-		const { container } = render(<Search />);
+		render(<Search />);
 
 		//Assert
-		expect(container).toMatchSnapshot();
+		expect(screen.getByDisplayValue(/test term/i)).toBeInTheDocument();
+	});
+
+	it('should not have the term in the input', () => {
+		//Arrange
+		useApplication.mockImplementation(() => ({ term: null }));
+
+		//Act
+		render(<Search />);
+
+		//Assert
+		expect(screen.queryByDisplayValue(/test term/i)).not.toBeInTheDocument();
 	});
 
 	it('should call onSubmit', () => {
@@ -33,5 +54,13 @@ describe('Search', () => {
 
 		expect(onSubmit).toHaveBeenCalledTimes(1);
 		expect(onSubmit).toHaveBeenCalledWith(term);
+	});
+
+	it('should render OK', () => {
+		//Act
+		const { container } = render(<Search />);
+
+		//Assert
+		expect(container).toMatchSnapshot();
 	});
 });

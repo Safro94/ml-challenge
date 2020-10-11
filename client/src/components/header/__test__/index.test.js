@@ -12,6 +12,12 @@ jest.mock('react-router-dom', () => ({
 	Link: jest.fn(({ children, ...rest }) => <a {...rest}>{children}</a>),
 }));
 
+jest.mock('hooks/application', () => ({
+	useApplication: jest.fn(() => ({
+		setSearchTerm: jest.fn(),
+	})),
+}));
+
 describe('Header', () => {
 	it('should render OK', () => {
 		//Act

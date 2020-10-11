@@ -4,6 +4,8 @@ import Routes from 'routes';
 
 import Header from 'components/header';
 
+import { ApplicationProvider } from 'hooks/application';
+
 import useStyles from 'isomorphic-style-loader/useStyles';
 import classes from './index.module.scss';
 import globalStyles from '../../index.scss';
@@ -12,12 +14,14 @@ export default () => {
 	useStyles(classes, globalStyles);
 
 	return (
-		<div>
-			<Header />
-
+		<ApplicationProvider>
 			<div>
-				<Routes />
+				<Header />
+
+				<div>
+					<Routes />
+				</div>
 			</div>
-		</div>
+		</ApplicationProvider>
 	);
 };
