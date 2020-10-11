@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Items from 'components/items';
+import ItemsContainer from 'containers/items';
 
 export default () => {
-	return <Items />;
+	return <ItemsContainer />;
 };

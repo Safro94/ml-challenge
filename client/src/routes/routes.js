@@ -27,17 +27,16 @@ const Detail = loadable(() =>
 
 export default [
 	{
-		path: RESULTS,
-		component: Results,
+		path: HOME,
+		component: Home,
 		exact: true,
 	},
 	{
 		path: DETAIL,
 		component: Detail,
-		exact: true,
 	},
 	{
-		path: HOME,
-		component: Home,
+		path: RESULTS,
+		component: Results,
 	},
 ];
