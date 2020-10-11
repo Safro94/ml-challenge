@@ -2,8 +2,8 @@ const { getItems, getItemById } = require('../integration/itemsClient');
 const { mapResults, mapItemDetail } = require('../utils/mapper');
 
 class ItemsService {
-  async get(query) {
-    const items = await getItems(query);
+  async get(query, limit) {
+    const items = await getItems(query, limit);
     return mapResults(items);
   }
 

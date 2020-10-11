@@ -3,8 +3,9 @@ const { mapResults, mapItemDetail } = require('../mapper');
 describe('Mappers', () => {
   test('mapItemDetail should return an object mapped correctly', () => {
     //Arrange
-    const item = getItem();
-    const expectedResult = getMapItemDetailExpectedResult();
+    const pictures = [{ url: 'pic.jpg' }, { url: 'pic2.jpg' }]
+    const item = getItem(pictures);
+    const expectedResult = getMapItemDetailExpectedResult(pictures[0].url);
 
     //Act
     const result = mapItemDetail(item);
@@ -54,12 +55,13 @@ describe('Mappers', () => {
   });
 });
 
-const getItem = () => ({
+const getItem = (pictures = []) => ({
   id: 1,
   title: 'title',
   currency_id: 'ars',
   price: 100.1,
   thumbnail: 'a.jpg',
+  pictures,
   condition: 'new',
   shipping: {
     free_shipping: true,
@@ -68,7 +70,7 @@ const getItem = () => ({
   plain_text: 'description'
 });
 
-const getExpectedItem = () => ({
+const getExpectedItem = (picture) => ({
   id: 1,
   title: 'title',
   price: {
@@ -76,18 +78,18 @@ const getExpectedItem = () => ({
     amount: 100,
     decimals: 1,
   },
-  picture: 'a.jpg',
+  picture: picture || 'a.jpg',
   condition: 'new',
   free_shipping: true,
 });
 
-const getMapItemDetailExpectedResult = () => ({
+const getMapItemDetailExpectedResult = (picture) => ({
   author: {
     name: 'Matias',
     lastname: 'Safranchik',
   },
   item: {
-    ...getExpectedItem(),
+    ...getExpectedItem(picture),
     sold_quantity: 50,
     description: 'description'
   },

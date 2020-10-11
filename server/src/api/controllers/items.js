@@ -1,8 +1,8 @@
 const ItemsService = require('../../service/itemsService');
 
 const getItems = async (req, res) => {
-  const { q } = req.query;
-  const items = await ItemsService.get(q);
+  const { q, limit } = req.query;
+  const items = await ItemsService.get(q, limit);
   res.json(items);
 };
 

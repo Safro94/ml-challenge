@@ -20,19 +20,20 @@ jest.mock('../../integration/itemsClient', () => {
 
 describe('Get items', () => {
   const query = 'test';
+  const limit = 1;
   
   it('should call getItems', async () => {
     //Act
-    await ItemsService.get(query);
+    await ItemsService.get(query, limit);
 
     //Assert
     expect(getItems).toHaveBeenCalledTimes(1);
-    expect(getItems).toHaveBeenCalledWith(query);
+    expect(getItems).toHaveBeenCalledWith(query, limit);
   });
 
   it('should mapResults and return the response', async () => {
     //Act
-    const result = await ItemsService.get(query);
+    const result = await ItemsService.get(query, limit);
 
     //Assert
     expect(mapResults).toHaveBeenCalledTimes(1);

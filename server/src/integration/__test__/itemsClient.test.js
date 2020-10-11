@@ -6,16 +6,16 @@ jest.mock('../../utils/fetch', () => {
 });
 
 describe('Get Items', () => {
-    const query = 'test';
+  const query = 'test';
 
-    beforeEach(() => {
-      fetch.mockImplementation(() => ([
-        { id: 10, title: 'item1' },
-        { id: 1, title: 'item2' },
-      ]))
-    });
+  beforeEach(() => {
+    fetch.mockImplementation(() => ([
+      { id: 10, title: 'item1' },
+      { id: 1, title: 'item2' },
+    ]))
+  });
 
-  it('should call fetch with the right arguments', async() => {
+  it('should call fetch only with q if there is no limit', async () => {
       //Act
       await getItems(query);
 
@@ -24,7 +24,19 @@ describe('Get Items', () => {
       expect(fetch).toHaveBeenCalledWith({ url: `${process.env.MELI_API_URL}/sites/MLA/search?q=${query}` });
   });
 
-  it('should return an array of items', async() => {
+  it('should call fetch with q and limit if there is a limit', async () => {
+      //Arrange
+      const limit = 10;
+
+      //Act
+      await getItems(query, limit);
+
+      //Assert
+      expect(fetch).toHaveBeenCalledTimes(1);
+      expect(fetch).toHaveBeenCalledWith({ url: `${process.env.MELI_API_URL}/sites/MLA/search?q=${query}&limit=${limit}` });
+  });
+
+  it('should return an array of items', async () => {
       //Arrange
       const expectedResult = [
         { id: 10, title: 'item1' },

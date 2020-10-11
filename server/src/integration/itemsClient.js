@@ -1,8 +1,9 @@
 const fetch = require('../utils/fetch');
 
-const getItems = async query => {
+const getItems = async (query, queryLimit) => {
+  const limit = queryLimit ? `&limit=${queryLimit}` : '';
   const data = await fetch({
-    url: `${process.env.MELI_API_URL}/sites/MLA/search?q=${query}`,
+    url: `${process.env.MELI_API_URL}/sites/MLA/search?q=${query}${limit}`,
   });
 
   return data;

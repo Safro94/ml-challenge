@@ -16,7 +16,7 @@ const mapItem = result => {
       amount: parseInt(amount, 10),
       decimals: parseInt(decimals, 10),
     },
-    picture: result.thumbnail,
+    picture: result.pictures && result.pictures.length ? result.pictures[0].url : result.thumbnail,
     condition: result.condition,
     free_shipping: result.shipping.free_shipping,
   };

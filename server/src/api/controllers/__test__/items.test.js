@@ -23,7 +23,7 @@ jest.mock('../../../service/itemsService', () => {
 describe('Get Items', () => {
     const res = mockRes();
     const req = mockReq({
-      query: { q: 'test' },
+      query: { q: 'test', limit: 4 },
     });
 
     beforeEach(() => {
@@ -33,7 +33,7 @@ describe('Get Items', () => {
   it('should call ItemsService.get with the right arguments', () => {
       //Assert
       expect(ItemsService.get).toHaveBeenCalledTimes(1);
-      expect(ItemsService.get).toHaveBeenCalledWith(req.query.q);
+      expect(ItemsService.get).toHaveBeenCalledWith(req.query.q, req.query.limit);
     });
 
   it('should call res.json with the mapResults response', () => {
