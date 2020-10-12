@@ -1,4 +1,4 @@
-const mapCategories = categories => categories.map(category => category.name);
+const mapCategories = categories => categories && categories.map(category => category.name);
 
 const mapFilters = filters => {
   const categories = filters.find(filter => filter.id.toLowerCase() === 'category');
@@ -50,10 +50,10 @@ const mapResults = data => ({
   a pesar de que en el enunciado no ponia una propiedad categories
   para el detalle del producto
 */
-const mapItemDetail = (item, categories) => ({
+const mapItemDetail = (item, categories = {}) => ({
   author: mapAuthor(),
   categories: mapCategories(categories.path_from_root),
-  item: {
+  item: item && {
     ...mapItem(item),
     sold_quantity: item.sold_quantity,
     description: item.plain_text,

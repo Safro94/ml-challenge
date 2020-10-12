@@ -50,6 +50,7 @@ h3 {
 
 h4 {
 	font-size: $fs-14;
+	font-weight: normal;
 }
 
 p {
@@ -73,5 +74,9 @@ p {
 
 	h3 {
 		font-size: $fs-18;
+	}
+
+	p {
+		font-size: $fs-16;
 	}
 }

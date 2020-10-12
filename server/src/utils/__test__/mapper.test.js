@@ -15,6 +15,20 @@ describe('Mappers', () => {
     expect(expectedResult).toEqual(result);
   });
 
+  test('mapItemDetail should return an object mapped with item null and no categories when there is no item and no categories', () => {
+    //Arrange
+    const expectedResult = {
+      author: getMapItemDetailExpectedResult().author,
+      item: null
+    };
+
+    //Act
+    const result = mapItemDetail(null);
+
+    //Assert
+    expect(expectedResult).toEqual(result);
+  });
+
   test('mapResults should return an object mapped correctly with empty categories', () => {
     //Arrange
     const results = getResults();

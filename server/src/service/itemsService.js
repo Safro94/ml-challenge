@@ -9,6 +9,8 @@ class ItemsService {
 
   async getById(id) {
     const item = await getItemById(id);
+    if(item.status === 404) return mapItemDetail(null);
+
     const categories = await getCategoryById(item.category_id);
     return mapItemDetail(item, categories);
   }

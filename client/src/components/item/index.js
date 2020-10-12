@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Price from 'components/shared/price';
+
 import formatCurrency from 'utils/currency';
 
 import useStyles from 'isomorphic-style-loader/useStyles';
@@ -24,12 +26,8 @@ export default ({ item, onClick }) => {
 
 			<div className={classes.information}>
 				<div>
-					<h2 className={classes.price}>
-						<span className={classes.currencyCode}>$</span>
-						{formatCurrency({
-							amount: item.price.amount,
-							decimals: item.price.decimals,
-						})}
+					<div className={classes.priceContainer}>
+						<Price customClasses={classes.price} price={item.price} />
 
 						{item.free_shipping && (
 							<img
@@ -38,7 +36,8 @@ export default ({ item, onClick }) => {
 								alt='Free shipping'
 							/>
 						)}
-					</h2>
+					</div>
+
 					<h3>{item.title}</h3>
 					<h3>{item.condition}</h3>
 				</div>

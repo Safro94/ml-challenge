@@ -1,0 +1,25 @@
+@import '../../../styles/main.scss';
+
+.price {
+	@include display($align: center);
+	margin-bottom: $space-default;
+	font-weight: 300;
+	color: $dark-grey;
+
+	.currencyCode {
+		margin-right: 10px;
+	}
+
+	.decimals {
+		font-size: $fs-12;
+		position: relative;
+		top: -4px;
+		right: -2px;
+	}
+}
+
+@include mq-sm {
+	.price {
+		margin-bottom: $space-double;
+	}
+}

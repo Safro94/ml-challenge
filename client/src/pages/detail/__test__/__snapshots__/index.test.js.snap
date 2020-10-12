@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Detail should render OK 1`] = `
+<div>
+  <div>
+    <div
+      class="container"
+    >
+      <ul />
+    </div>
+    <div
+      class="container"
+      style="height: 200px; width: 100%;"
+    >
+      <div
+        class="loader"
+      />
+    </div>
+  </div>
+</div>
+`;

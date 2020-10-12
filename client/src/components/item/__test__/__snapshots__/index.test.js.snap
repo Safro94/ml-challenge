@@ -17,21 +17,32 @@ exports[`Item should render with free shipping 1`] = `
       class="information"
     >
       <div>
-        <h2
-          class="price"
+        <div
+          class="priceContainer"
         >
-          <span
-            class="currencyCode"
+          <h1
+            class="price price"
           >
-            $
-          </span>
-          300,50
+            <span
+              class="currencyCode"
+            >
+              $
+            </span>
+            <span>
+              300
+            </span>
+            <span
+              class="decimals"
+            >
+              50
+            </span>
+          </h1>
           <img
             alt="Free shipping"
             class="shippingImage"
             src="/assets/ic_shipping@2x.png.png.png"
           />
-        </h2>
+        </div>
         <h3>
           title
         </h3>
@@ -68,16 +79,27 @@ exports[`Item should render without free shipping 1`] = `
       class="information"
     >
       <div>
-        <h2
-          class="price"
+        <div
+          class="priceContainer"
         >
-          <span
-            class="currencyCode"
+          <h1
+            class="price price"
           >
-            $
-          </span>
-          300,50
-        </h2>
+            <span
+              class="currencyCode"
+            >
+              $
+            </span>
+            <span>
+              300
+            </span>
+            <span
+              class="decimals"
+            >
+              50
+            </span>
+          </h1>
+        </div>
         <h3>
           title
         </h3>

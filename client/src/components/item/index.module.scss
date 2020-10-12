@@ -18,13 +18,15 @@
 		display: grid;
 		color: $dark-grey;
 
-		.currencyCode {
-			margin-right: 10px;
-		}
-
-		.price {
+		.priceContainer {
 			@include display($align: center);
-			margin-bottom: $space-default;
+			margin-bottom: $space-double;
+
+			.price {
+				margin: 0;
+				font-size: $fs-24;
+				font-weight: 400;
+			}
 		}
 
 		.shippingImage {
@@ -50,10 +52,6 @@
 		.information {
 			grid-template-columns: 3fr 1fr;
 			padding: $space-default;
-
-			.price {
-				margin-bottom: $space-double;
-			}
 		}
 	}
 }

@@ -15,7 +15,7 @@ jest.mock('../../utils/mapper', () => {
 jest.mock('../../integration/itemsClient', () => {
   return {
     getItems: jest.fn(() => mockItems),
-    getItemById: jest.fn(() => mockItemDetail),
+    getItemById: jest.fn(),
     getCategoryById: jest.fn(() => mockCategories)
   }
 });
@@ -33,7 +33,7 @@ describe('Get items', () => {
     expect(getItems).toHaveBeenCalledWith(query, limit);
   });
 
-  it('should mapResults and return the response', async () => {
+  it('should call mapResults and return the response', async () => {
     //Act
     const result = await ItemsService.get(query, limit);
 
@@ -48,6 +48,9 @@ describe('Get Items By Id', () => {
   const id = '123';
 
   it('should call getById and getCategoryById', async () => {
+    //Arrange
+    getItemById.mockImplementation(() => mockItemDetail);
+
     //Act
     await ItemsService.getById(id);
 
@@ -59,13 +62,29 @@ describe('Get Items By Id', () => {
     expect(getCategoryById).toHaveBeenCalledWith(mockItemDetail.category_id);
   });
 
-  it('should mapItemDetail and return the response', async () => {
+  it('should call mapItemDetail and return the response', async () => {
+    //Arrange
+    getItemById.mockImplementation(() => mockItemDetail);
+
     //Act
     const result = await ItemsService.getById(id);
 
     //Assert
     expect(mapItemDetail).toHaveBeenCalledTimes(1);
     expect(mapItemDetail).toHaveBeenCalledWith(mockItemDetail, mockCategories);
+    expect(result).toEqual(mockItemDetail);
+  });
+
+  it('should call mapItemDetail with null and return the response when the status is 404', async () => {
+    //Arrange
+    getItemById.mockImplementation(() => ({status:404}));
+
+    //Act
+    const result = await ItemsService.getById(id);
+
+    //Assert
+    expect(mapItemDetail).toHaveBeenCalledTimes(1);
+    expect(mapItemDetail).toHaveBeenCalledWith(null);
     expect(result).toEqual(mockItemDetail);
   });
 }); 
