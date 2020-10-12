@@ -4,9 +4,14 @@ main {
 	@include scrollbar;
 }
 
+.routes {
+	margin-bottom: 10%;
+}
+
 @include mq-lg {
 	.routes {
 		max-width: map-get($breakpoints, 'lg');
 		margin: auto;
+		margin-bottom: 10%;
 	}
 }

@@ -12,13 +12,13 @@ import axios from 'utils/axios';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import classes from './index.module.scss';
 
-export default ({ itemId }) => {
+export default ({ data, itemId }) => {
 	useStyles(classes);
 	const handleError = useErrorHandler();
 	const { setResult } = useApplication();
 
 	const [loading, setLoading] = useState(true);
-	const [item, setItem] = useState();
+	const [item, setItem] = useState(data?.item);
 
 	useEffect(() => {
 		const getItem = () => {
@@ -29,15 +29,15 @@ export default ({ itemId }) => {
 			}, handleError);
 		};
 
-		if (itemId) getItem();
+		if (!item && itemId) getItem();
 	}, [itemId]);
 
-	if (loading) return <Loading />;
+	if (!item && loading) return <Loading />;
 
 	return (
 		<>
 			{item ? (
-				<div className={classes.container}>
+				<div data-testid='item' className={classes.container}>
 					<Detail item={item} />
 					<Description description={item.description} />
 				</div>

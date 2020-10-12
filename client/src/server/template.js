@@ -1,4 +1,4 @@
-export default ({ markup, js, styles }) => `
+export default ({ markup, js, styles, initialData }) => `
 <!doctype html>
 <html lang="es">
   <head>
@@ -13,6 +13,9 @@ export default ({ markup, js, styles }) => `
   <body>
     <div id="root">${markup}</div>
     ${js.getScriptTags()}
+    <script id="initState">
+      window.__initialData__ = ${JSON.stringify(initialData)};  
+    </script>
   </body>
 </html>
 `;

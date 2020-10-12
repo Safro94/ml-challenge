@@ -12,9 +12,12 @@ jest.mock('react-router-dom', () => ({
 	Link: jest.fn(({ children, ...rest }) => <a {...rest}>{children}</a>),
 }));
 
+const mockSetSearchTerm = jest.fn();
+const mockSetResult = jest.fn();
 jest.mock('hooks/application', () => ({
 	useApplication: jest.fn(() => ({
-		setSearchTerm: jest.fn(),
+		setSearchTerm: mockSetSearchTerm,
+		setResult: mockSetResult,
 	})),
 }));
 
@@ -27,7 +30,7 @@ describe('Header', () => {
 		expect(container).toMatchSnapshot();
 	});
 
-	it('should go to the results page when the logo is clicked', async () => {
+	it('should go to the results page and when the logo is clicked', async () => {
 		//Act
 		render(<Header />);
 		userEvent.click(screen.getByTestId('logo'));
@@ -35,5 +38,11 @@ describe('Header', () => {
 		//Assert
 		expect(Link).toHaveBeenCalledTimes(1);
 		expect(Link.mock.calls[0][0].to).toBe('/');
+
+		expect(mockSetResult).toHaveBeenCalledTimes(1);
+		expect(mockSetResult).toHaveBeenCalledWith({ items: [], categories: [] });
+
+		expect(mockSetSearchTerm).toHaveBeenCalledTimes(1);
+		expect(mockSetSearchTerm).toHaveBeenCalledWith('');
 	});
 });

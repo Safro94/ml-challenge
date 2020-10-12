@@ -13,16 +13,18 @@ jest.mock('hooks/application', () => ({
 }));
 
 describe('Search', () => {
+	const onSubmit = jest.fn();
+	const term = 'test';
+
 	it('should have the term in the input', () => {
 		//Arrange
-		const term = 'test term';
 		useApplication.mockImplementation(() => ({ term }));
 
 		//Act
 		render(<Search />);
 
 		//Assert
-		expect(screen.getByDisplayValue(/test term/i)).toBeInTheDocument();
+		expect(screen.getByDisplayValue(/test/i)).toBeInTheDocument();
 	});
 
 	it('should not have the term in the input', () => {
@@ -37,10 +39,6 @@ describe('Search', () => {
 	});
 
 	it('should call onSubmit', () => {
-		//Arrange
-		const onSubmit = jest.fn();
-		const term = 'test';
-
 		//Act
 		render(<Search onSubmit={onSubmit} />);
 		const button = screen.getByRole('button');
@@ -54,6 +52,18 @@ describe('Search', () => {
 
 		expect(onSubmit).toHaveBeenCalledTimes(1);
 		expect(onSubmit).toHaveBeenCalledWith(term);
+	});
+
+	it('should not call onSubmit when there is not onSubmit passed by props', () => {
+		//Act
+		render(<Search />);
+		const button = screen.getByRole('button');
+
+		//Assert
+		userEvent.type(screen.getByPlaceholderText(/Nunca dejes de buscar/i), term);
+		userEvent.click(button);
+
+		expect(onSubmit).not.toBeCalled();
 	});
 
 	it('should render OK', () => {

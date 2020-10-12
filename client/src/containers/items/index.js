@@ -17,10 +17,10 @@ import classes from './index.module.scss';
 export default () => {
 	useStyles(classes);
 	const history = useHistory();
-	const { term, items, setResult } = useApplication();
+	const { term, items, setResult, setSearchTerm } = useApplication();
 	const handleError = useErrorHandler();
 
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const getItems = () => {
@@ -37,16 +37,16 @@ export default () => {
 		};
 
 		if (term) {
-			setLoading(true);
 			getItems();
 		}
 	}, [term, setResult]);
 
 	const handleClick = id => {
+		setSearchTerm('');
 		history.push(DETAIL.replace(':id', id));
 	};
 
-	if (loading) return <Loading />;
+	if (term && loading) return <Loading />;
 
 	return (
 		<div className={classes.container}>
@@ -55,9 +55,13 @@ export default () => {
 					<Item key={item.id} item={item} onClick={handleClick} />
 				))
 			) : (
-				<h1 className={classes.error}>
-					No se han encontrado resultados para tu busqueda
-				</h1>
+				<>
+					{term && (
+						<h1 className={classes.error}>
+							No se han encontrado resultados para tu busqueda
+						</h1>
+					)}
+				</>
 			)}
 		</div>
 	);

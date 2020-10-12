@@ -31,30 +31,53 @@ jest.mock('react-router-dom', () => ({
 describe('ItemsContainer', () => {
 	const mockTerm = 'term';
 	const mockSetResult = jest.fn();
+	const mockSetSearchTerm = jest.fn();
 	const mockResult = {
 		items: [{ id: 10, title: 'item', price: { amount: 300 } }],
 		categories: ['cat1', 'cat2'],
 	};
 
-	it('should show the message and not call axios when there is no term', async () => {
-		useApplication.mockImplementation(() => ({}));
+	it('should show the loader when there is a term but no item yet', async () => {
+		//Arrange
+		useApplication.mockImplementation(() => ({
+			term: 'test',
+			setResult: mockSetResult,
+		}));
 
 		//Act
 		render(<ItemsContainer />);
 
 		//Assert
 		await waitFor(() => {
-			expect(
-				screen.getByText(/No se han encontrado resultados para tu busqueda/i)
-			).toBeInTheDocument();
-			expect(axios).not.toBeCalled();
+			expect(screen.getByTestId('loading')).toBeInTheDocument();
 		});
 	});
 
-	it('should call axios and set the result', async () => {
+	it('should show the message when there is a term but no item', async () => {
+		//Arrange
+		useApplication.mockImplementation(() => ({
+			term: 'test',
+			setResult: mockSetResult,
+		}));
+
+		//Act
+		render(<ItemsContainer />);
+
+		//Assert
+		await waitFor(() => {
+			expect(axios).toHaveBeenCalledTimes(1);
+
+			expect(
+				screen.getByText(/No se han encontrado resultados para tu busqueda/i)
+			).toBeInTheDocument();
+		});
+	});
+
+	it('should show the item', async () => {
 		useApplication.mockImplementation(() => ({
 			term: mockTerm,
 			setResult: mockSetResult,
+			items: mockResult.items,
 		}));
 
 		//Act
@@ -67,11 +90,20 @@ describe('ItemsContainer', () => {
 
 			expect(mockSetResult).toHaveBeenCalledTimes(1);
 			expect(mockSetResult).toHaveBeenCalledWith(mockResult);
+
+			expect(
+				screen.queryByText(/No se han encontrado resultados para tu busqueda/i)
+			).not.toBeInTheDocument();
+
+			expect(screen.getAllByTestId('item')).toHaveLength(1);
 		});
 	});
 
 	it('should do a history push', async () => {
-		useApplication.mockImplementation(() => ({ items: mockResult.items }));
+		useApplication.mockImplementation(() => ({
+			setSearchTerm: mockSetSearchTerm,
+			items: mockResult.items,
+		}));
 
 		//Act
 		render(<ItemsContainer />);
@@ -86,6 +118,9 @@ describe('ItemsContainer', () => {
 			expect(mockUseHistory).toHaveBeenCalledWith(
 				DETAIL.replace(':id', mockResult.items[0].id)
 			);
+
+			expect(mockSetSearchTerm).toHaveBeenCalledTimes(1);
+			expect(mockSetSearchTerm).toHaveBeenCalledWith('');
 		});
 	});
 });

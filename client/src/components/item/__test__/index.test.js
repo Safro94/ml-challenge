@@ -52,6 +52,15 @@ describe('Item', () => {
 		expect(onClick).toHaveBeenCalledWith(item.id);
 	});
 
+	it('should not call onclick when there is not onClick passed by props', () => {
+		//Act
+		render(<Item item={item} />);
+		userEvent.click(screen.getByTestId('item'));
+
+		//Assert
+		expect(onClick).not.toBeCalled();
+	});
+
 	it('should call formatCurrency', () => {
 		//Act
 		render(<Item item={item} />);

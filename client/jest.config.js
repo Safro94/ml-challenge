@@ -9,6 +9,14 @@ module.exports = {
 		'!**/__test__/**',
 		'!**/__tests__/**',
 	],
+	coveragePathIgnorePatterns: [
+		'<rootDir>/node_modules/',
+		'<rootDir>/src/routes/',
+		'<rootDir>/src/server/',
+		'<rootDir>/src/styles/',
+		'<rootDir>/src/client.js',
+		'<rootDir>/src/index.js',
+	],
 	moduleNameMapper: {
 		'\\.(css|scss|sass)': 'identity-obj-proxy',
 	},

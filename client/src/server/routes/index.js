@@ -3,24 +3,37 @@ import React from 'react';
 import path from 'path';
 
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouter, matchPath } from 'react-router-dom';
 
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 import StyleContext from 'isomorphic-style-loader/StyleContext';
 
+import routes from 'routes/routes';
+
 import App from 'components/app';
 
 import template from '../template';
-
-const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
 
 server
 	.disable('x-powered-by')
 	.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
-	.get('/*', (req, res) => {
-		const context = {};
+	.get('/*', async (req, res) => {
+		/*
+			Obtengo la ruta de la url y matcheo con mis rutas
+			para ver si tiene un requestInitialData y fetchear
+			la data en el server asi viene la vista armada. Si
+			no tiene requestInitialData, devuelvo un objeto vacio
+		*/
+		const currentRoute = routes.find(route => matchPath(req.path, route));
+		let initialData;
+		if (currentRoute?.requestInitialData) {
+			initialData = await currentRoute.requestInitialData(req);
+		} else {
+			initialData = {};
+		}
+		const context = { initialData };
 
 		const css = new Set();
 		const insertCss = (...styles) =>
@@ -46,6 +59,7 @@ server
 				markup,
 				js: extractor,
 				styles: css,
+				initialData,
 			})
 		);
 	});

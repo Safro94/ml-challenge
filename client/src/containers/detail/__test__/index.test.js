@@ -23,13 +23,13 @@ jest.mock('utils/axios', () =>
 	})
 );
 
-describe('DetailContainer', () => {
+describe('Detail Container', () => {
 	const itemId = 10;
 	const mockResult = {
 		categories: ['cat1', 'cat2'],
 	};
 
-	it('should show the loader when there is no item', async () => {
+	it('should show the loader when there is no item', () => {
 		//Act
 		render(<DetailContainer />);
 
@@ -37,17 +37,49 @@ describe('DetailContainer', () => {
 		expect(screen.getByTestId('loading')).toBeInTheDocument();
 	});
 
-	it('should call axios and set the result', async () => {
+	it('should show the item when there is no data', async () => {
 		//Act
 		render(<DetailContainer itemId={itemId} />);
 
 		//Assert
 		await waitFor(() => {
+			expect(screen.getByTestId('item')).toBeInTheDocument();
+
 			expect(axios).toHaveBeenCalledTimes(1);
 			expect(axios).toHaveBeenCalledWith(`/items/${itemId}`);
 
 			expect(mockSetResult).toHaveBeenCalledTimes(1);
 			expect(mockSetResult).toHaveBeenCalledWith(mockResult);
+		});
+	});
+
+	it('should show the item when data has item', async () => {
+		//Arrange
+		const data = { item: { id: 10, title: 'item', price: { amount: 300 } } };
+
+		//Act
+		render(<DetailContainer data={data} itemId={itemId} />);
+
+		//Assert
+		expect(screen.getByTestId('item')).toBeInTheDocument();
+		expect(axios).not.toBeCalled();
+	});
+
+	it('should show the message if the item was not found', async () => {
+		//Arrange
+		axios.mockResolvedValue(() => ({ data: { item: null } }));
+
+		//Act
+		render(<DetailContainer itemId={itemId} />);
+
+		//Assert
+		await waitFor(() => {
+			expect(
+				screen.getByText(/No se ha encontrado el item/i)
+			).toBeInTheDocument();
+
+			expect(axios).toHaveBeenCalledTimes(1);
+			expect(mockSetResult).toHaveBeenCalledTimes(1);
 		});
 	});
 });

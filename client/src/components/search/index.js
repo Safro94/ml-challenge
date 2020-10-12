@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import Form from 'components/shared/form';
 import Input from 'components/shared/input';
@@ -14,7 +14,7 @@ export default ({ onSubmit }) => {
 	const { term } = useApplication();
 
 	const inputRef = useRef();
-	const [searchTerm, setSearchTerm] = useState(term ?? '');
+	const [searchTerm, setSearchTerm] = useState('');
 
 	const isInvalid = searchTerm === '';
 
@@ -23,6 +23,10 @@ export default ({ onSubmit }) => {
 		if (onSubmit) onSubmit(searchTerm);
 		inputRef.current.blur();
 	};
+
+	useEffect(() => {
+		setSearchTerm(term ?? '');
+	}, [term]);
 
 	return (
 		<div>

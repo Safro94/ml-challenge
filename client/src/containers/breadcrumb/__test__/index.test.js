@@ -2,15 +2,14 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
+
+import { useApplication } from 'hooks/application';
 
 import BreadcrumbContainer from '../';
 
-const mockCategories = ['category1', 'category2'];
+const mockCategories = ['category1'];
 jest.mock('hooks/application', () => ({
-	useApplication: jest.fn(() => ({
-		categories: mockCategories,
-	})),
+	useApplication: jest.fn(),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -18,10 +17,38 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('BreadcrumbContainer', () => {
-	it('should render two breadcrumbs', () => {
+	it('should render two breadcrumbs when propsCategories has two categories', () => {
+		//Arrange
+		const propsCategories = ['cat1', 'cat2'];
+		useApplication.mockImplementation(() => ({ categories: null }));
+
 		//Act
-		render(<BreadcrumbContainer />);
+		render(<BreadcrumbContainer categories={propsCategories} />);
+
 		//Assert
 		expect(screen.queryAllByTestId('link')).toHaveLength(2);
+	});
+
+	it('should render one breadcrumb when there are propsCategories but it has contextCategories', () => {
+		//Arrange
+		const propsCategories = ['cat1', 'cat2'];
+		useApplication.mockImplementation(() => ({ categories: mockCategories }));
+
+		//Act
+		render(<BreadcrumbContainer categories={propsCategories} />);
+
+		//Assert
+		expect(screen.queryAllByTestId('link')).toHaveLength(1);
+	});
+
+	it('should render one breadcrumb when there are no propsCategories but it has contextCategories', () => {
+		//Arrange
+		useApplication.mockImplementation(() => ({ categories: mockCategories }));
+
+		//Act
+		render(<BreadcrumbContainer />);
+
+		//Assert
+		expect(screen.queryAllByTestId('link')).toHaveLength(1);
 	});
 });
