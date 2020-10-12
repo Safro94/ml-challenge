@@ -10,7 +10,7 @@ export default ({ item }) => {
 	useStyles(classes);
 
 	return (
-		<div className={classes.container}>
+		<>
 			<div className={classes.imageContainer}>
 				<img className={classes.image} src={item.picture} alt={item.title} />
 			</div>
@@ -24,6 +24,6 @@ export default ({ item }) => {
 					<Button customClasses={classes.button}>Comprar</Button>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };

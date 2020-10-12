@@ -4,12 +4,14 @@ import { render } from '@testing-library/react';
 import { screen, waitFor } from '@testing-library/dom';
 
 import axios from 'utils/axios';
-import { useApplication } from 'hooks/application';
 
 import DetailContainer from '../';
 
+const mockSetResult = jest.fn();
 jest.mock('hooks/application', () => ({
-	useApplication: jest.fn(),
+	useApplication: jest.fn(() => ({
+		setResult: mockSetResult,
+	})),
 }));
 
 jest.mock('utils/axios', () =>
@@ -23,32 +25,19 @@ jest.mock('utils/axios', () =>
 
 describe('DetailContainer', () => {
 	const itemId = 10;
-	const mockSetResult = jest.fn();
 	const mockResult = {
-		items: { id: 10, title: 'item', price: { amount: 300 } },
 		categories: ['cat1', 'cat2'],
 	};
 
-	it('should show the message and not call axios when there is no item id', async () => {
-		useApplication.mockImplementation(() => ({}));
-
+	it('should show the loader when there is no item', async () => {
 		//Act
 		render(<DetailContainer />);
 
 		//Assert
-		await waitFor(() => {
-			expect(
-				screen.getByText(/No se ha encontrado el item/i)
-			).toBeInTheDocument();
-			expect(axios).not.toBeCalled();
-		});
+		expect(screen.getByTestId('loading')).toBeInTheDocument();
 	});
 
 	it('should call axios and set the result', async () => {
-		useApplication.mockImplementation(() => ({
-			setResult: mockSetResult,
-		}));
-
 		//Act
 		render(<DetailContainer itemId={itemId} />);
 

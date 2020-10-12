@@ -3,56 +3,52 @@
 exports[`Detail should render OK 1`] = `
 <div>
   <div
-    class="container"
+    class="imageContainer"
   >
-    <div
-      class="imageContainer"
+    <img
+      alt="title"
+      class="image"
+      src="a.jpg"
+    />
+  </div>
+  <div
+    class="information"
+  >
+    <h4
+      class="quantity"
     >
-      <img
-        alt="title"
-        class="image"
-        src="a.jpg"
+      new
+       - 
+      20
+       vendidos
+    </h4>
+    <h2
+      class="title"
+    >
+      title
+    </h2>
+    <h1
+      class="price price"
+    >
+      <span
+        class="currencyCode"
+      >
+        $
+      </span>
+      <span>
+        30.50
+      </span>
+      <span
+        class="decimals"
       />
-    </div>
-    <div
-      class="information"
-    >
-      <h4
-        class="quantity"
+    </h1>
+    <div>
+      <button
+        class="button button"
+        type="submit"
       >
-        new
-         - 
-        20
-         vendidos
-      </h4>
-      <h2
-        class="title"
-      >
-        title
-      </h2>
-      <h1
-        class="price price"
-      >
-        <span
-          class="currencyCode"
-        >
-          $
-        </span>
-        <span>
-          30.50
-        </span>
-        <span
-          class="decimals"
-        />
-      </h1>
-      <div>
-        <button
-          class="button button"
-          type="submit"
-        >
-          Comprar
-        </button>
-      </div>
+        Comprar
+      </button>
     </div>
   </div>
 </div>

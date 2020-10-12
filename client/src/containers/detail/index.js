@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useErrorHandler } from 'react-error-boundary';
 
 import Detail from 'components/detail';
+import Description from 'components/detail/description';
 import Loading from 'components/shared/loading';
 
 import { useApplication } from 'hooks/application';
@@ -14,26 +15,21 @@ import classes from './index.module.scss';
 export default ({ itemId }) => {
 	useStyles(classes);
 	const handleError = useErrorHandler();
-	const { items: item, setResult } = useApplication();
+	const { setResult } = useApplication();
 
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [item, setItem] = useState();
 
 	useEffect(() => {
 		const getItem = () => {
 			axios(`/items/${itemId}`).then(res => {
-				const result = {
-					items: res.data?.item,
-					categories: res.data?.categories,
-				};
-				setResult(result);
+				setItem(res.data?.item);
 				setLoading(false);
+				setResult({ categories: res.data?.categories });
 			}, handleError);
 		};
 
-		if (itemId) {
-			setLoading(true);
-			getItem();
-		}
+		if (itemId) getItem();
 	}, [itemId]);
 
 	if (loading) return <Loading />;
@@ -43,6 +39,7 @@ export default ({ itemId }) => {
 			{item ? (
 				<div className={classes.container}>
 					<Detail item={item} />
+					<Description description={item.description} />
 				</div>
 			) : (
 				<h1 className={classes.error}>No se ha encontrado el item</h1>

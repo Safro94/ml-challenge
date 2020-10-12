@@ -2,12 +2,6 @@
 
 main {
 	@include scrollbar;
-	height: 100vh;
-	overflow-y: auto;
-
-	.routes {
-		height: 100%;
-	}
 }
 
 @include mq-lg {

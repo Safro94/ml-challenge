@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Description should render OK 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <h2
+      class="title"
+    >
+      Descripción del producto
+    </h2>
+    <p>
+      <h2>
+        description
+      </h2>
+    </p>
+  </div>
+</div>
+`;

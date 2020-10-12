@@ -1,0 +1,12 @@
+@import '../../../styles/main.scss';
+
+.container {
+	grid-area: description;
+	@include display($direction: column);
+	padding: $space-double;
+
+	.title {
+		font-size: 28px;
+		margin-bottom: $space-double;
+	}
+}

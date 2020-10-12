@@ -7,7 +7,11 @@ export default ({ height = '200px', width = '100%' }) => {
 	useStyles(classes);
 
 	return (
-		<div className={classes.container} style={{ height, width }}>
+		<div
+			data-testid='loading'
+			className={classes.container}
+			style={{ height, width }}
+		>
 			<div className={classes.loader} />
 		</div>
 	);

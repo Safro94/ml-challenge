@@ -4,6 +4,7 @@ exports[`Loading should render OK 1`] = `
 <div>
   <div
     class="container"
+    data-testid="loading"
     style="height: 200px; width: 100%;"
   >
     <div

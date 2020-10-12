@@ -1,60 +1,43 @@
 @import '../../styles/main.scss';
 
-.container {
-	padding: $space-double;
+.imageContainer {
+	grid-area: image;
+	@include display($justify: center);
 
-	& > div {
-		padding: $space-default;
+	.image {
+		@include image($height: 150px);
+	}
+}
+
+.information {
+	grid-area: info;
+
+	.quantity {
+		margin-bottom: $space-default;
 	}
 
-	.imageContainer {
-		grid-area: image;
-		@include display($justify: center);
-
-		.image {
-			@include image($height: 150px);
-		}
+	.title {
+		font-weight: bold;
+		margin-bottom: $space-double;
 	}
 
-	.information {
-		grid-area: info;
+	.price {
+		font-size: $fs-46;
+	}
 
-		.quantity {
-			margin-bottom: $space-default;
-		}
-
-		.title {
-			font-weight: bold;
-			margin-bottom: $space-double;
-		}
-
-		.price {
-			font-size: $fs-46;
-		}
-
-		.button {
-			color: $white;
-			background-color: $tertiary-color;
-			height: 50px;
-			width: 100%;
-			border-radius: 4px;
-		}
+	.button {
+		color: $white;
+		background-color: $tertiary-color;
+		height: 50px;
+		width: 100%;
+		border-radius: 4px;
 	}
 }
 
 @include mq-sm {
-	.container {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-areas:
-			'image image info'
-			'image image info'
-			'description description .';
-
-		.imageContainer {
-			.image {
-				@include image($width: 680px, $height: fit-content);
-			}
+	.imageContainer {
+		.image {
+			@include image($width: 680px, $height: fit-content);
 		}
 	}
 }

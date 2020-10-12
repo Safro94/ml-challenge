@@ -2,8 +2,25 @@
 
 .container {
 	background-color: $white;
+	padding: $space-double;
+	margin-bottom: 10%;
+
+	& > div {
+		padding: $space-default;
+	}
 }
 
 .error {
 	text-align: center;
+}
+
+@include mq-sm {
+	.container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-areas:
+			'image image info'
+			'image image info'
+			'description description .';
+	}
 }

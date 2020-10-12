@@ -2,7 +2,9 @@
 
 exports[`Detail should render OK 1`] = `
 <div>
-  <div>
+  <div
+    class="container"
+  >
     <div
       class="container"
     >
@@ -10,6 +12,7 @@ exports[`Detail should render OK 1`] = `
     </div>
     <div
       class="container"
+      data-testid="loading"
       style="height: 200px; width: 100%;"
     >
       <div
