@@ -17,7 +17,7 @@ jest.mock('hooks/application', () => ({
 jest.mock('utils/axios', () =>
 	jest.fn().mockResolvedValue({
 		data: {
-			items: [{ id: 10, title: 'item', price: { amount: 300 } }],
+			items: [{ id: 10, title: 'item', price: { currency: '$', amount: 300 } }],
 			categories: ['cat1', 'cat2'],
 		},
 	})
@@ -33,7 +33,7 @@ describe('ItemsContainer', () => {
 	const mockSetResult = jest.fn();
 	const mockSetSearchTerm = jest.fn();
 	const mockResult = {
-		items: [{ id: 10, title: 'item', price: { amount: 300 } }],
+		items: [{ id: 10, title: 'item', price: { currency: '$', amount: 300 } }],
 		categories: ['cat1', 'cat2'],
 	};
 

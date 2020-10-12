@@ -10,6 +10,7 @@ jest.mock('utils/currency', () => jest.fn(() => '300,50'));
 
 describe('Price', () => {
 	const price = {
+		currency: '$',
 		amount: 300,
 		decimals: 50,
 	};

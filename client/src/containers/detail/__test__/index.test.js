@@ -17,7 +17,7 @@ jest.mock('hooks/application', () => ({
 jest.mock('utils/axios', () =>
 	jest.fn().mockResolvedValue({
 		data: {
-			item: { id: 10, title: 'item', price: { amount: 300 } },
+			item: { id: 10, title: 'item', price: { currency: '$', amount: 300 } },
 			categories: ['cat1', 'cat2'],
 		},
 	})
@@ -55,7 +55,9 @@ describe('Detail Container', () => {
 
 	it('should show the item when data has item', async () => {
 		//Arrange
-		const data = { item: { id: 10, title: 'item', price: { amount: 300 } } };
+		const data = {
+			item: { id: 10, title: 'item', price: { currency: '$', amount: 300 } },
+		};
 
 		//Act
 		render(<DetailContainer data={data} itemId={itemId} />);

@@ -13,6 +13,7 @@ describe('Detail', () => {
 			condition: 'new',
 			sold_quantity: 20,
 			price: {
+				currency: '$',
 				amount: 30,
 				decimals: 50,
 			},

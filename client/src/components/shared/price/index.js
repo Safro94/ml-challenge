@@ -19,7 +19,7 @@ export default ({ customClasses, price, currencyCode = '$' }) => {
 				customClasses ? `${classes.price} ${customClasses}` : classes.price
 			}
 		>
-			<span className={classes.currencyCode}>{currencyCode}</span>
+			<span className={classes.currencyCode}>{price?.currency}</span>
 			{formattedPrice?.length && (
 				<>
 					<span>{formattedPrice[0]}</span>

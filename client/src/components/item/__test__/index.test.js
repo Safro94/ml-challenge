@@ -16,6 +16,7 @@ describe('Item', () => {
 		picture: 'a.jpg',
 		title: 'title',
 		price: {
+			currency: '$',
 			amount: 300,
 			decimals: 50,
 		},
