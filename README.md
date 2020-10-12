@@ -100,8 +100,8 @@ el servidor debería estar corriendo en http://localhost:8000 y el cliente en ht
 
 Para ver la documentación de los endpoints ir a http://localhost:8000/docs
 
-- GET http://localhost:8000/items?q=query
-- GET http://localhost:8000/items/:id
+- GET http://localhost:8000/api/items?q=query
+- GET http://localhost:8000/api/items/:id
 
 ## Test
 
