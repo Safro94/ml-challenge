@@ -3,10 +3,6 @@
 .container {
 	background-color: $white;
 	padding: $space-double;
-
-	& > div {
-		padding: $space-default;
-	}
 }
 
 .error {

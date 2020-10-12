@@ -9,7 +9,10 @@ export default ({ description }) => {
 	return (
 		<div className={classes.container}>
 			<h2 className={classes.title}>Descripción del producto</h2>
-			<p dangerouslySetInnerHTML={{ __html: description }} />
+			<p
+				className={classes.description}
+				dangerouslySetInnerHTML={{ __html: description }}
+			/>
 		</div>
 	);
 };

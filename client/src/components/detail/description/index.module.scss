@@ -3,10 +3,20 @@
 .container {
 	grid-area: description;
 	@include display($direction: column);
-	padding: $space-double;
+	padding: $space-default;
 
 	.title {
 		font-size: 28px;
-		margin-bottom: $space-double;
+	}
+
+	.description {
+		color: $light-grey;
+		margin: $space-double 0;
+	}
+}
+
+@include mq-sm {
+	.container {
+		padding: 0;
 	}
 }

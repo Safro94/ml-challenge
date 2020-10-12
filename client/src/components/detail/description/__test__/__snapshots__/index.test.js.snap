@@ -10,7 +10,9 @@ exports[`Description should render OK 1`] = `
     >
       Descripción del producto
     </h2>
-    <p>
+    <p
+      class="description"
+    >
       <h2>
         description
       </h2>
