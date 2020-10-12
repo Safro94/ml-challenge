@@ -90,6 +90,9 @@ module.exports = {
 				? 'static/js/[name].js'
 				: 'static/js/[name].[chunkhash:8].js';
 
+			/*
+				Esto seria mas apuntado a produccion, pero a fines del test lo puse en dev
+			*/
 			appConfig.optimization = Object.assign({}, appConfig.optimization, {
 				minimize: true,
 				minimizer: [new TerserPlugin()],
