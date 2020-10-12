@@ -3,6 +3,9 @@ const express = require('express');
 const compression = require('compression');
 const helmet = require('helmet');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 const items = require('./routes/items');
 const errorHandler = require('../middlewares/errorHandler');
 const notFound = require('../middlewares/notFound');
@@ -16,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/items', items);
 
 // Not found

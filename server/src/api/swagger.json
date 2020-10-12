@@ -1,0 +1,173 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Meli coding challenge API",
+        "description": "This is an API created with Express for the Meli coding challenge",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "tags": [
+        {
+            "name": "items",
+            "description": "Operations"
+        }
+    ],
+    "paths": {
+        "/api/items": {
+            "get": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Get items by query and limit",
+                "operationId": "getItems",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "q",
+                        "required": true,
+                        "description": "Search term",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Number of items",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/responses/success"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/items/{id}": {
+            "get": {
+                "tags": [
+                    "items"
+                ],
+                "summary": "Get items by id",
+                "operationId": "getItemsById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/responses/success"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "apiResponse": {
+                "type": "object",
+                "properties": {
+                    "author": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "lastname": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "categories": {
+                        "type": "array"
+                    },
+                    "items": {
+                        "type": "array"
+                    }
+                }
+            },
+            "item": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "object",
+                        "properties": {
+                            "currency": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "decimals": {
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        }
+                    },
+                    "picture": {
+                        "type": "string"
+                    },
+                    "condition": {
+                        "type": "string"
+                    },
+                    "free_shipping": {
+                        "type": "boolean"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "category_id": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Successful request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/apiResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

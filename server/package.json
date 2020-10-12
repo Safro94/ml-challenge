@@ -30,6 +30,7 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.5.2",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "swagger-ui-express": "^4.1.4"
   }
 }
