@@ -2,8 +2,6 @@ import React from 'react';
 
 import Price from 'components/shared/price';
 
-import formatCurrency from 'utils/currency';
-
 import useStyles from 'isomorphic-style-loader/useStyles';
 import classes from './index.module.scss';
 

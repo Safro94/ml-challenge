@@ -39,8 +39,12 @@
     "jest": "^26.5.2",
     "node-sass": "^4.14.1",
     "optimize-js-plugin": "0.0.4",
+    "purgecss": "^3.0.0",
     "razzle": "^3.0.0",
+    "razzle-plugin-compression": "^1.0.0",
+    "razzle-plugin-purgecss": "^1.0.1",
     "react-test-renderer": "^16.13.1",
-    "sass-loader": "^10.0.3"
+    "sass-loader": "^10.0.3",
+    "terser-webpack-plugin": "^4.2.3"
   }
 }

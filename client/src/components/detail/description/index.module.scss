@@ -3,7 +3,7 @@
 .container {
 	grid-area: description;
 	@include display($direction: column);
-	padding: $space-default;
+	padding: $space-default 0;
 
 	.title {
 		font-size: 28px;

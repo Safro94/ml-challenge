@@ -4,10 +4,34 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const path = require('path');
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+	plugins: [
+		{
+			name: 'purgecss',
+			options: {
+				path: path.resolve(__dirname, 'src/**/*'),
+			},
+		},
+		{
+			name: 'compression',
+			options: {
+				brotli: false,
+				gzip: true,
+				compressionPlugin: {
+					filename: '[path].gz[query]',
+					algorithm: 'gzip',
+					test: /\.(js|css|html|svg)$/,
+					compressionOptions: { level: 9 },
+					minRatio: 0.8,
+				},
+			},
+		},
+	],
 	modify(config, { target, dev }, webpack) {
-		const appConfig = config;
+		const appConfig = Object.assign({}, config);
+
 		const postCssLoader = {
 			loader: 'postcss-loader',
 			options: {
@@ -65,38 +89,30 @@ module.exports = {
 			appConfig.output.filename = dev
 				? 'static/js/[name].js'
 				: 'static/js/[name].[chunkhash:8].js';
-		}
 
-		if (!dev && target === 'web') {
-			process.env.CI = false;
-			appConfig.plugins.push(
-				new CompressionPlugin({
-					filename: '[path][query]',
-					algorithm: 'gzip',
-				}),
-				new OptimizeJsPlugin({
-					sourceMap: false,
-				})
-			);
-
-			appConfig.optimization.splitChunks = {
-				chunks: 'all',
-				minSize: 30000,
-				maxSize: 1000000,
-				minChunks: 1,
-				maxAsyncRequests: Number(process.env.MAX_ASYNC_REQUEST),
-				maxInitialRequests: 3,
-				name: true,
-				cacheGroups: {
-					main: {
-						chunks: 'all',
-						minChunks: 2,
-						reuseExistingChunk: true,
-						enforce: true,
+			appConfig.optimization = Object.assign({}, appConfig.optimization, {
+				minimize: true,
+				minimizer: [new TerserPlugin()],
+				runtimeChunk: true,
+				splitChunks: {
+					chunks: 'all',
+					minSize: 30000,
+					maxSize: 1000000,
+					minChunks: 1,
+					name: dev,
+					cacheGroups: {
+						commons: {
+							test: /[\\/]node_modules[\\/]/,
+							name: 'vendors',
+							reuseExistingChunk: true,
+						},
+						main: {
+							minChunks: 2,
+							reuseExistingChunk: true,
+						},
 					},
 				},
-			};
-			appConfig.optimization.runtimeChunk = true;
+			});
 		}
 
 		return appConfig;
