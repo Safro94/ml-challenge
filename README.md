@@ -1,10 +1,10 @@
-# Mercadolibre coding Challenge
+# MELI coding Challenge
 
-## Descripción
+## Description
 
-Este proyecto se hizo para el coding challenge de Mercado Libre. El cliente es una aplicación de React usando Razzle(https://github.com/jaredpalmer/razzle) para tener SSR. El server esta hecho con Node y Express. Para los estilos se usó Sass modules.
+This project was built for a coding challenge. The client is a React application with Server Side Rendering using Razzle(https://github.com/jaredpalmer/razzle). The server was built using Node js and Express. This project uses Sass modules for the styling.
 
-## Estructura de carpetas
+## Folder structure
 
     root
       ├── server
@@ -51,70 +51,68 @@ Este proyecto se hizo para el coding challenge de Mercado Libre. El cliente es u
     - Sass Modules
     - Jest + React testing library
 
-## Como empezar
+## How to start
 
 ### Clonar
 
-Podés clonar el repositorio desde esta url: https://github.com/Safro94/ml-challenge.git
-Para clonarlo
+You can clone the repo using this url: https://github.com/Safro94/ml-challenge.git
 
 ```
 git clone https://github.com/Safro94/ml-challenge.git
 ```
 
-### Instalar dependencias
+### Install dependencies
 
-Ir al directorio del cliente
+Go to the client folder
 
 ```
 cd ml-challenge/client
 ```
 
-Ejecutar
+Run
 
 ```
 npm install
 ```
 
-Ir al directorio del server
+Go to the server folder
 
 ```
 cd ml-challenge/server
 ```
 
-Ejecutar
+Run
 
 ```
 npm install
 ```
 
-Para correr los dos proyectos al mismo tiempo, sobre la carpeta del server ejecutar
-
+To run both projects at the same time, go to the server folder and run
 ```
 npm run dev
 ```
 
-el servidor debería estar corriendo en http://localhost:8000 y el cliente en http://localhost:3000
+the server should be running on http://localhost:8000 and the client http://localhost:3000
 
 ## Server endpoints
 
-Para ver la documentación de los endpoints ir a http://localhost:8000/docs
+To see the docs, go to http://localhost:8000/docs
 
 - GET http://localhost:8000/api/items?q=query
 - GET http://localhost:8000/api/items/:id
 
 ## Test
 
-Los dos proyectos están testeados con Jest, y el cliente con Jest + React testing library. En cada proyecto se puede ejecutar el comando
+Both projects uses Jest for testing, and the client uses Jest + React testing library. You can run this command on each project
 
 ```
 npm test
 ```
 
-para correr los tests y
+to run the tests and
 
 ```
 npm run coverage
 ```
 
-para ver el coverage de cada proyecto.
+to see the coverage.
