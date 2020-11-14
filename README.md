@@ -53,7 +53,7 @@ This project was built for a coding challenge. The client is a React application
 
 ## How to start
 
-### Clonar
+### Clone
 
 You can clone the repo using this url: https://github.com/Safro94/ml-challenge.git
 
